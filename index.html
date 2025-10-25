@@ -282,32 +282,22 @@
                 <li onclick="toggleDetail(this)">Enerji Verimliliği ve Enerji Etüdü Hizmetleri
                     <div class="service-detail">Kuruluşların enerji kullanımını analiz eder, tasarruf fırsatlarını belirler ve maliyetleri düşürür.</div>
                 </li>
-                <li onclick="toggleDetail(this)">Sosyal Uygunluk Denetim Danışmanlığı (BSCI, Sedex, Higg FSLM)
-                    <div class="service-detail">Tedarik zincirinde sosyal sorumluluk standartlarına uygunluğu denetler ve geliştirilmesi için rehberlik sağlar.</div>
-                </li>
-                <li onclick="toggleDetail(this)">GOTS, GRS, RCS Organik ve Geri Dönüştürülmüş Tekstil Standartları Danışmanlığı
-                    <div class="service-detail">Organik ve geri dönüştürülmüş tekstil ürünlerinin uluslararası standartlara uygunluğunu sağlar ve sürdürülebilir üretim süreçlerini destekler.</div>
+                <li onclick="toggleDetail(this)">Sosyal Uygunluk Denetim Danışmanlığı
+                    <div class="service-detail">İşyerinde çalışma koşullarının sosyal standartlara uygunluğunu değerlendirir ve geliştirilmesine yardımcı olur.</div>
                 </li>
             </ul>
         </div>
 
         <div id="egitim" class="services" style="display:none;">
             <ul>
-                <li onclick="toggleDetail(this)">ISO 14064-1 Karbon Ayak İzi Eğitimi
-                    <div class="service-detail">ISO 14064 standardının uygulanması ve karbon ayak izi hesaplamaları hakkında detaylı eğitim.</div>
-                </li>
-                <li onclick="toggleDetail(this)">ISO 50001 Enerji Yönetim Sistemi Eğitimi
-                    <div class="service-detail">Enerji yönetim sistemi kurulum ve iyileştirme süreçleri hakkında eğitim.</div>
-                </li>
-                <li onclick="toggleDetail(this)">ISO 14001 Çevre Yönetim Sistemi Eğitimi
-                    <div class="service-detail">Çevre yönetim sistemi kurulumu ve sürdürülebilirlik süreçleri hakkında eğitim.</div>
-                </li>
-                <li onclick="toggleDetail(this)">ISO 9001 Kalite Yönetim Sistemi Eğitimi
-                    <div class="service-detail">Kalite yönetim sistemi prensipleri ve uygulamaları hakkında eğitim.</div>
-                </li>
-                <li onclick="toggleDetail(this)">ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi Eğitimi
-                    <div class="service-detail">İş sağlığı ve güvenliği yönetim sistemi uygulamaları hakkında eğitim.</div>
-                </li>
+                <li>ISO 14064-1 Kurumsal Karbon Ayak İzi Hesaplama ve Raporlama Eğitimi</li>
+                <li>ISO 50001 Enerji Yönetim Sistemi Eğitimi</li>
+                <li>ISO 14001 Çevre Yönetim Sistemi Eğitimi</li>
+                <li>ISO 9001 Kalite Yönetim Sistemi Eğitimi</li>
+                <li>ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi Eğitimi</li>
+                <li>Higg FEM Eğitimi</li>
+                <li>Enerji Verimliliği ve Enerji Etüdü Eğitimi</li>
+                <li>Sosyal Uygunluk Denetim Eğitimi</li>
             </ul>
         </div>
     </section>
@@ -316,44 +306,40 @@
         <h2>İletişim</h2>
         <div class="contact-info">
             <div>📞 +90 536 514 62 31</div>
-            <div>✉️ figen.koksal@hotmail.com</div>
-            <div>LinkedIn: <a href="https://www.linkedin.com/in/figen-k%C3%B6ksal-41263678/" target="_blank">https://www.linkedin.com/in/figen-k%C3%B6ksal-41263678/</a></div>
+            <div>✉ <a href="mailto:figen.koksal@hotmail.com">figen.koksal@hotmail.com</a></div>
         </div>
-        <form action="https://formsubmit.co/figen.koksal@hotmail.com" method="POST" class="contact-form">
+
+        <form class="contact-form" action="https://formsubmit.co/figen.koksal@hotmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://figen-droid.github.io/">
             <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="name" placeholder="Ad/Soyad" required>
-            <input type="email" name="email" placeholder="Email adresiniz" required>
-            <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
+            <input type="text" name="ad" placeholder="Adınız" required>
+            <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+            <textarea name="message" placeholder="Mesajınız" required></textarea>
             <button type="submit">Gönder</button>
         </form>
+        <p style="margin-top:10px; color:green;">Teşekkürler! Mesajınız başarıyla gönderildi.</p>
     </section>
 
     <script>
-        function showSection(id){
-            document.querySelectorAll('section').forEach(sec=>{
-                sec.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
+        function showSection(sectionId){
+            const sections = document.querySelectorAll("section");
+            sections.forEach(sec => sec.classList.remove("active"));
+            document.getElementById(sectionId).classList.add("active");
         }
 
-        function showServices(id){
-            document.querySelectorAll('.services').forEach(div=>{
-                div.style.display='none';
-            });
-            document.getElementById(id).style.display='block';
+        function showServices(service){
+            document.querySelectorAll('.services').forEach(s => s.style.display = 'none');
+            document.getElementById(service).style.display = 'block';
         }
 
         function toggleDetail(li){
-            const detail = li.querySelector('.service-detail');
-            if(detail.style.display==='block'){
-                detail.style.display='none';
-            }else{
-                detail.style.display='block';
-            }
+            const detail = li.querySelector(".service-detail");
+            detail.style.display = detail.style.display === "block" ? "none" : "block";
         }
     </script>
 </body>
 </html>
+
 
 
 
