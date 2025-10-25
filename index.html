@@ -1,0 +1,359 @@
+<!DOCTYPE html> 
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figen KÖKSAL</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #003366;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: #ffffffee;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 10px 0 0 0;
+            font-size: 2.3rem;
+            letter-spacing: 1px;
+        }
+
+        header h3 {
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: linear-gradient(90deg, #0077b6, #00b36b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-message {
+            position: absolute;
+            font-size: 2rem;
+            font-style: italic;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInMove 5s ease-in-out forwards, floatText 6s ease-in-out infinite alternate;
+            background: linear-gradient(90deg, #0077b6, #00b36b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        @keyframes fadeInMove {
+            0% { opacity: 0; transform: translateY(25px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #003366;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background-color: #0059b3;
+            transform: scale(1.05);
+        }
+
+        section {
+            display: none;
+            padding: 60px 20px;
+            max-width: 900px;
+            margin: auto;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #003366;
+            display: inline-block;
+            padding-bottom: 5px;
+            font-size: 1.8rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: "◆";
+            margin-right: 10px;
+            color: #00a3a3;
+            font-weight: bold;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+            cursor: pointer;
+        }
+
+        button.tab-button {
+            background-color: #003366;
+            color: white;
+            padding: 12px 25px;
+            margin: 5px 5px 25px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        button.tab-button:hover {
+            background-color: #0059b3;
+            transform: scale(1.05);
+        }
+
+        .contact-info div {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: #003366;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #003366;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #00a3a3;
+            transform: scale(1.02);
+        }
+
+        .contact-form button {
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #0077b6, #00b36b);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        .service-detail {
+            display: none;
+            margin-top: 5px;
+            margin-left: 20px;
+            font-style: italic;
+            color: #0059b3;
+        }
+
+        @media(max-width:600px){
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            header h1 { font-size: 1.8rem; }
+            header h3 { font-size: 1rem; }
+            .hero-message { font-size: 1.5rem; padding: 12px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Figen KÖKSAL</h1>
+        <h3>Yönetim Sistemleri ve Sürdürülebilirlik Danışmanı</h3>
+    </header>
+
+    <div class="hero">
+        <div class="hero-message">Sürdürülebilir bir gelecek için birlikte çalışalım</div>
+    </div>
+
+    <nav>
+        <a onclick="showSection('anasayfa')">Anasayfa</a>
+        <a onclick="showSection('hizmetler')">Hizmetler</a>
+        <a onclick="showSection('iletisim')">İletişim</a>
+    </nav>
+
+    <section id="anasayfa" class="active">
+        <h2>Anasayfa</h2>
+        <p>Ege Üniversitesi Tekstil Mühendisliği Tekstil Kimyası ve Terbiyesi alanından lisans, Namık Kemal Üniversitesi Tekstil Mühendisliği alanından yüksek lisans derecesine sahibim.</p>
+        <p>25 yılı aşkın süredir özel sektörde kalite güvence müdürü, enerji yöneticisi, yönetim temsilcisi, Ar-Ge proje yöneticisi, sürdürülebilirlik müdürü olarak görev yaptım.</p>
+        <p>Yönetim sistemleri ve sürdürülebilirlik ihtiyaçlarınız için özel olarak tasarlanmış eğitim ve danışmanlık hizmetleri sunmaktayım.</p>
+        <p><b>Figen KÖKSAL, MSc</b></p>
+    </section>
+
+    <section id="hizmetler">
+        <h2>Hizmetler</h2>
+        <button class="tab-button" onclick="showServices('danismanlik')">Danışmanlık</button>
+        <button class="tab-button" onclick="showServices('egitim')">Eğitim</button>
+
+        <div id="danismanlik" class="services" style="display:none;">
+            <ul>
+                <li onclick="toggleDetail(this)">ISO 14064-1 Kurumsal Karbon Ayak İzi Hesaplama ve Raporlama Danışmanlığı
+                    <div class="service-detail">
+                        ISO 14064 standardı, sera gazı emisyonlarının ve uzaklaştırmalarının ölçülmesi ve raporlanması için kuruluş düzeyinde ilkeleri ve gereklilikleri belirtir. Kurumsal karbon ayak izi raporlamaları, kuruluşlar için düşük veya sıfır karbon stratejisi belirlemenin ilk adımıdır.<br><br>
+                        <b>Danışmanlık Hizmetimizin Kapsamı:</b><br>
+                        1. Faaliyet Sınırlarının Belirlenmesi<br>
+                        2. Veri Toplama<br>
+                        3. Hesaplama<br>
+                        4. Raporlama<br><br>
+                        <b>Karbon Ayak İzi Hesaplamasının Şirketinize Faydası:</b><br>
+                        - Enerji verimliliği ve maliyet tasarrufu sağlar.<br>
+                        - Çevresel ve sosyal fayda ve şirket prestiji sağlar.<br>
+                        - İşletmenin geleceğe hazır hale gelmesini sağlar.<br>
+                        - Yatırımcı ve iş ortağı ilgisi yaratır.<br>
+                        - Mevzuat ve yönetmeliklere uygunluk sağlar.
+                    </div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 50001 Enerji Yönetim Sistemi kurulumu
+                    <div class="service-detail">Kuruluşların enerji performansını sürekli iyileştirmeleri ve enerji maliyetlerini düşürmeleri için sistematik bir yaklaşım sağlar.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 14001 Çevre Yönetim Sistemi kurulumu
+                    <div class="service-detail">Kuruluşların çevresel etkilerini kontrol etmelerine, sürdürülebilirlik hedeflerini gerçekleştirmelerine ve yasal uyumluluğu sağlamalarına yardımcı olur.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 9001 Kalite Yönetim Sistemi kurulumu
+                    <div class="service-detail">Kuruluşların kalite standartlarını yükseltmelerine, süreçleri iyileştirmelerine ve müşteri memnuniyetini artırmalarına yardımcı olur.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi kurulumu
+                    <div class="service-detail">Çalışanların güvenliğini ve sağlığını koruyarak iş kazalarını azaltan sistematik bir yaklaşım sağlar.</div>
+                </li>
+                <li onclick="toggleDetail(this)">Higg FEM Danışmanlığı
+                    <div class="service-detail">Tekstil ve moda sektöründe sosyal ve çevresel performansı değerlendirmek ve iyileştirmek için rehberlik sağlar.</div>
+                </li>
+                <li onclick="toggleDetail(this)">Enerji Verimliliği ve Enerji Etüdü Hizmetleri
+                    <div class="service-detail">Kuruluşların enerji kullanımını analiz eder, tasarruf fırsatlarını belirler ve maliyetleri düşürür.</div>
+                </li>
+                <li onclick="toggleDetail(this)">Sosyal Uygunluk Denetim Danışmanlığı (BSCI, Sedex, Higg FSLM)
+                    <div class="service-detail">Tedarik zincirinde sosyal sorumluluk standartlarına uygunluğu denetler ve geliştirilmesi için rehberlik sağlar.</div>
+                </li>
+                <li onclick="toggleDetail(this)">GOTS, GRS, RCS Organik ve Geri Dönüştürülmüş Tekstil Standartları Danışmanlığı
+                    <div class="service-detail">Organik ve geri dönüştürülmüş tekstil ürünlerinin uluslararası standartlara uygunluğunu sağlar ve sürdürülebilir üretim süreçlerini destekler.</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="egitim" class="services" style="display:none;">
+            <ul>
+                <li onclick="toggleDetail(this)">ISO 14064-1 Karbon Ayak İzi Eğitimi
+                    <div class="service-detail">ISO 14064 standardının uygulanması ve karbon ayak izi hesaplamaları hakkında detaylı eğitim.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 50001 Enerji Yönetim Sistemi Eğitimi
+                    <div class="service-detail">Enerji yönetim sistemi kurulum ve iyileştirme süreçleri hakkında eğitim.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 14001 Çevre Yönetim Sistemi Eğitimi
+                    <div class="service-detail">Çevre yönetim sistemi kurulumu ve sürdürülebilirlik süreçleri hakkında eğitim.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 9001 Kalite Yönetim Sistemi Eğitimi
+                    <div class="service-detail">Kalite yönetim sistemi prensipleri ve uygulamaları hakkında eğitim.</div>
+                </li>
+                <li onclick="toggleDetail(this)">ISO 45001 İş Sağlığı ve Güvenliği Yönetim Sistemi Eğitimi
+                    <div class="service-detail">İş sağlığı ve güvenliği yönetim sistemi uygulamaları hakkında eğitim.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="iletisim">
+        <h2>İletişim</h2>
+        <div class="contact-info">
+            <div>📞 +90 536 514 62 31</div>
+            <div>✉️ figen.koksal@hotmail.com</div>
+            <div>LinkedIn: <a href="https://www.linkedin.com/in/figen-k%C3%B6ksal-41263678/" target="_blank">https://www.linkedin.com/in/figen-k%C3%B6ksal-41263678/</a></div>
+        </div>
+        <form action="https://formsubmit.co/figen.koksal@hotmail.com" method="POST" class="contact-form">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="name" placeholder="Ad/Soyad" required>
+            <input type="email" name="email" placeholder="Email adresiniz" required>
+            <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
+            <button type="submit">Gönder</button>
+        </form>
+    </section>
+
+    <script>
+        function showSection(id){
+            document.querySelectorAll('section').forEach(sec=>{
+                sec.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+        }
+
+        function showServices(id){
+            document.querySelectorAll('.services').forEach(div=>{
+                div.style.display='none';
+            });
+            document.getElementById(id).style.display='block';
+        }
+
+        function toggleDetail(li){
+            const detail = li.querySelector('.service-detail');
+            if(detail.style.display==='block'){
+                detail.style.display='none';
+            }else{
+                detail.style.display='block';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
